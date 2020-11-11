@@ -93,11 +93,6 @@ public class University {
                 group + "' составляет " + String.format ("%.2f", averageScoreInSubjectAtFacultyAndInGroup));
     }
 
-
-
-
-
-
     public static Set <String> getSubjectsSet () {
         Set <String> subjectsSet = new HashSet<>();
         for (Faculty faculty : technicalUniversity) {
