@@ -1,6 +1,8 @@
 package IO.OptionalTask;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,6 +13,14 @@ import java.util.Random;
 
     public class OptionalTask1 {
         public static void main(String[] args) throws IOException {
+            File resultDirectory = new File ("src/main/java/IO/OptionalTask/Results");
+            if (!resultDirectory.exists()) {
+                try {
+                    Files.createDirectory(Path.of("src/main/java/IO/OptionalTask/Results"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             File file = new File("src/main/java/IO/OptionalTask/Results/OptionalTask1.txt");
             Random random = new Random();
             int numberOfDigits = random.nextInt(100);
