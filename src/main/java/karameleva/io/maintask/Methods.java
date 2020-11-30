@@ -1,9 +1,8 @@
-package IO.MainTask;
+package karameleva.io.maintask;
 
 import java.io.*;
 
 public class Methods {
-
     public static void writeListOfFilesAndFoldersInDirectoryToFile(File dir, int indent, BufferedWriter writer) {
         try {
             for (int i = 1; i < indent; i += 3) {
@@ -23,6 +22,7 @@ public class Methods {
             }
             for (File current : dir.listFiles()) {
                 if (current.isDirectory()) {
+
                     Methods.writeListOfFilesAndFoldersInDirectoryToFile(current, indent, writer);
                 }
             }
@@ -32,7 +32,6 @@ public class Methods {
     }
 
     public static void printRequiredDataForSpecifiedFile(File dir) {
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader(dir));
             boolean fileContainsFileStructure = true;
@@ -43,7 +42,6 @@ public class Methods {
                 }
             }
            reader.close();
-
             if (fileContainsFileStructure) {
 
                 reader = new BufferedReader(new FileReader(dir));
@@ -52,7 +50,6 @@ public class Methods {
                 double amountOfFoldersWithFiles = 0;
                 double totalNameLengthOfAllFiles = 0;
                 String previousLine = null;
-
                 while ((line = reader.readLine()) != null) {
                     if (line.contains("--")) {
                         amountOfFolders++;
@@ -71,12 +68,10 @@ public class Methods {
                     }
                     previousLine = line;
                 }
-
                 System.out.println("Количествово папок " + amountOfFolders);
                 System.out.println("Количество файлов " + amountOfFiles);
                 System.out.println("Среднее количество файлов в папке " + Math.round((amountOfFiles / amountOfFoldersWithFiles)));
                 System.out.println("Средняя длина названия файла " + Math.round(totalNameLengthOfAllFiles / amountOfFiles));
-
             } else {
                 System.out.println("Файл не содержит файловую структуру");
             }
@@ -86,6 +81,5 @@ public class Methods {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

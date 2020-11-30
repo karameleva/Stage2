@@ -1,15 +1,9 @@
-package ErrorsAndExceptions.methods;
+package karameleva.exceptions.methods;
 
-import ErrorsAndExceptions.classes.Faculty;
-import ErrorsAndExceptions.classes.Group;
-import ErrorsAndExceptions.classes.Mark;
-import ErrorsAndExceptions.classes.Student;
-import ErrorsAndExceptions.exceptions.NoFacultiesInTheUniversityException;
+import karameleva.exceptions.classes.*;
+import karameleva.exceptions.exceptions.NoFacultiesInTheUniversityException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class University {
 
@@ -22,8 +16,7 @@ public class University {
         }
     }
 
-    public static void printAverageScoreForEachStudent() {
-
+    public void printAverageScoreForEachStudent() {
         System.out.println("\n------------------------------------------------" +
                 "\nСредний балл по всем предметам каждого студента:" +
                 "\n------------------------------------------------");
@@ -44,12 +37,11 @@ public class University {
             }
         }
 
-    public static void printAverageScoreForEachSubject () {
-
+    public void printAverageScoreForEachSubject () {
         System.out.println("\n--------------------------------------------------------" +
                 "\nСредний балл по каждому предмету для всего университета: " +
                 "\n--------------------------------------------------------\n");
-        Set<String> subjects = University.getSubjectsSet();
+        Set<String> subjects = getSubjectsSet();
 
         for (String subject : subjects) {
             double sum = 0;
@@ -71,29 +63,25 @@ public class University {
         }
     }
 
-    public static void printAverageScoreInSubjectAtFacultyAndInGroup()  {
+    public void printAverageScoreInSubjectAtFacultyAndInGroup()  {
         System.out.println("\n-----------------------------------------------" +
                 "\nСредний балл по конкретному предмету " +
                 "\nв конкретной группе и на конкретном факультете:" +
                 "\n-----------------------------------------------");
         Set <String> subjects = getSubjectsSet();
         String subject = getRequiredElement("предмет", subjects);
-
-        Set <String> faculties = getFacultiesSetWithSubject(subject);
-        String faculty = getRequiredElement("факультет", faculties);
+        String faculty = getRequiredElement("факультет", getFacultiesSetWithSubject(subject));
         double averageScoreInSubjectAtFaculty = getAverageMark(subject, faculty);
-
         Set <String> groups = getGroupsSetWithSubjectAndFaculty(subject, faculty);
         String group = getRequiredElement("группу", groups);
         double averageScoreInSubjectAtFacultyAndInGroup = getAverageMark(subject, faculty, group);
-
         System.out.println("\nСредний балл по предмету '" + subject + "' на факультете '" + faculty +
                 "' составляет " + String.format ("%.2f", averageScoreInSubjectAtFaculty));
         System.out.println("\nСредний балл по предмету '" + subject + "' на факультете '" + faculty + "' в группе '" +
                 group + "' составляет " + String.format ("%.2f", averageScoreInSubjectAtFacultyAndInGroup));
     }
 
-    public static Set <String> getSubjectsSet () {
+    public Set <String> getSubjectsSet () {
         Set <String> subjectsSet = new HashSet<>();
         for (Faculty faculty : technicalUniversity) {
             for (Group group : faculty.getGroups()) {
@@ -108,7 +96,7 @@ public class University {
     }
 
 
-    public static Set <String> getFacultiesSetWithSubject(String subject)  {
+    public Set <String> getFacultiesSetWithSubject(String subject)  {
         Set <String> faculties = new HashSet<>();
         for (Faculty faculty : technicalUniversity) {
             for (Group group : faculty.getGroups()) {
@@ -124,7 +112,7 @@ public class University {
         return faculties;
     }
 
-    public static Set <String> getGroupsSetWithSubjectAndFaculty (String subject, String faculty){
+    public Set <String> getGroupsSetWithSubjectAndFaculty (String subject, String faculty){
         Set<String> groupsSet = new HashSet<>();
         for (Faculty facultyElem : technicalUniversity) {
             if (facultyElem.getFacultyName() == faculty) {
@@ -142,7 +130,7 @@ public class University {
         return groupsSet;
     }
 
-    public static String getRequiredElement(String elementName, Set <String> elementSet) {
+    public String getRequiredElement(String elementName, Set <String> elementSet) {
         System.out.println("\nВыберите " + elementName + " : ");
         int i = 0;
         for (String string : elementSet) {
@@ -160,7 +148,7 @@ public class University {
         return requiredElement;
     }
 
-    public static double getAverageMark (String subject, String faculty)  {
+    public double getAverageMark (String subject, String faculty)  {
         double sum = 0;
         int i = 0;
         for (Faculty facultyElem : technicalUniversity) {
@@ -180,7 +168,7 @@ public class University {
         return sum/i;
     }
 
-    public static double getAverageMark (String subject, String faculty, String group)  {
+    public double getAverageMark (String subject, String faculty, String group)  {
         double sum = 0;
         int i = 0;
 

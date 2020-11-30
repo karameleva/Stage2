@@ -1,7 +1,4 @@
-package IO.OptionalTask;
-
-//Прочитать строки из файла и поменять местами
-//первое и последнее слова в каждой строке.
+package karameleva.io.optionaltask;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,18 +7,18 @@ import java.nio.file.Path;
 public class OptionalTask10 {
     public static void main (String [] args)  {
         String line;
-        File resultDirectory = new File ("src/main/java/IO/OptionalTask/Results");
+        File resultDirectory = new File ("src/main/resources/results");
         if (!resultDirectory.exists()) {
             try {
-                Files.createDirectory(Path.of("src/main/java/IO/OptionalTask/Results"));
+                Files.createDirectory(Path.of("src/main/resources/results"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/IO/OptionalTask/" +
-                "InitialData/InitialDataOptionalTask10.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/IO/OptionalTask/" +
-                     "Results/OptionalTask10.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(
+                "src/main/resources/InitialDataOptionalTask10.txt"));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(
+                     "src/main/resources/results/OptionalTask10.txt"))) {
             while ((line = reader.readLine()) != null) {
                 String [] lineAsArray = line.split(" ");
                 String buf = lineAsArray [0];

@@ -1,6 +1,6 @@
-package ErrorsAndExceptions.classes;
+package karameleva.exceptions.classes;
 
-import ErrorsAndExceptions.exceptions.NoGroupsAtTheFacultyException;
+import karameleva.exceptions.exceptions.NoGroupsAtTheFacultyException;
 
 import java.util.List;
 

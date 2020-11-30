@@ -1,22 +1,19 @@
-package IO.OptionalTask;
-
-// Файл содержит символы, слова, целые числа и числа с плавающей запятой.
-// Определить все данные, тип которых вводится из командной строки.
+package karameleva.io.optionaltask;
 
 import java.io.*;
 
 public class OptionalTask6 {
     public static void main (String [] args) {
-        File file = new File ("src/main/java/IO/OptionalTask/InitialData/InitialDataOptionalTask6.txt");
-        String  requiredDataType = args [0];
+        File file = new File ("src/main/resources/InitialDataOptionalTask6.txt");
+        String requiredDataType = args [0];
+        String requiredDataTypeToLowerCase = requiredDataType.toLowerCase();
         String line;
         System.out.println("Тип данных " + requiredDataType + ": ");
-
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((line = reader.readLine())!= null) {
                 String [] array = line.split(" ");
                 for (String element : array) {
-                    if (getDataType(element).equals(requiredDataType)) {
+                    if (getDataType(element).equals(requiredDataTypeToLowerCase)) {
                         System.out.print(element + " ");
                     }
                 }
@@ -44,8 +41,8 @@ public static String getDataType (String element) {
          }
          if (!dataTypeIsDefined) {
              if (element.length() == 1) return "char";
-             else return "String";
-         } else return "Double";
-     } else return "Integer";
+             else return "string";
+         } else return "double";
+     } else return "integer";
 }
 }

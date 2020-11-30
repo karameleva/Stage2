@@ -1,4 +1,4 @@
-package ErrorsAndExceptions.exceptions;
+package karameleva.exceptions.exceptions;
 
 public class NoGroupsAtTheFacultyException extends Exception {
     public NoGroupsAtTheFacultyException() {

@@ -1,4 +1,4 @@
-package ErrorsAndExceptions.exceptions;
+package karameleva.exceptions.exceptions;
 
 public class NoSubjectsForStudentException extends Exception {
     public NoSubjectsForStudentException() {

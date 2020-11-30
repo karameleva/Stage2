@@ -1,6 +1,6 @@
-package ErrorsAndExceptions.classes;
+package karameleva.exceptions.classes;
 
-import ErrorsAndExceptions.exceptions.MarkOutOfBoundException;
+import karameleva.exceptions.exceptions.MarkOutOfBoundException;
 
 public class Mark {
     private Subject subject;

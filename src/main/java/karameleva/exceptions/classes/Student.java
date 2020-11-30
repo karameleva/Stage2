@@ -1,6 +1,6 @@
-package ErrorsAndExceptions.classes;
+package karameleva.exceptions.classes;
 
-import ErrorsAndExceptions.exceptions.NoSubjectsForStudentException;
+import karameleva.exceptions.exceptions.NoSubjectsForStudentException;
 
 import java.util.List;
 

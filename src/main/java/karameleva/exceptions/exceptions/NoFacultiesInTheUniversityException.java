@@ -1,4 +1,4 @@
-package ErrorsAndExceptions.exceptions;
+package karameleva.exceptions.exceptions;
 
 public class NoFacultiesInTheUniversityException  extends Exception {
     public NoFacultiesInTheUniversityException() {

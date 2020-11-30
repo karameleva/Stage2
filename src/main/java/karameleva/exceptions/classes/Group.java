@@ -1,6 +1,6 @@
-package ErrorsAndExceptions.classes;
+package karameleva.exceptions.classes;
 
-import ErrorsAndExceptions.exceptions.NoStudentsInTheGroupException;
+import karameleva.exceptions.exceptions.NoStudentsInTheGroupException;
 
 import java.util.List;
 
