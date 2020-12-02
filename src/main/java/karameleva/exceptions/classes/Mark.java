@@ -24,6 +24,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return subject.realName + " - " + String.format ("%.2f", mark);
+        return subject.realName + " - " + mark;
     }
 }

@@ -16,6 +16,14 @@ public class Student {
         this.marks = marks;
     }
 
+    public double getAverageScoreForStudent() {
+        double totalScore = 0;
+        for (Mark mark : marks) {
+            totalScore += mark.getMark();
+        }
+        return totalScore/marks.size();
+    }
+
     public String getStudentName() {
         return studentName;
     }
