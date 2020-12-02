@@ -1,19 +1,13 @@
 package karameleva.io.optionaltask;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class OptionalTask10 {
     public static void main (String [] args)  {
         String line;
         File resultDirectory = new File ("src/main/resources/results");
         if (!resultDirectory.exists()) {
-            try {
-                Files.createDirectory(Path.of("src/main/resources/results"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            new File("src/main/resources/results").mkdir();
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(
                 "src/main/resources/InitialDataOptionalTask10.txt"));

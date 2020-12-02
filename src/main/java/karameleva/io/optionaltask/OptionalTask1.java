@@ -1,8 +1,6 @@
 package karameleva.io.optionaltask;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -10,11 +8,8 @@ public class OptionalTask1 {
     public static void main(String[] args) throws IOException {
         File resultDirectory = new File ("src/main/resources/results");
         if (!resultDirectory.exists()) {
-            try {
-                Files.createDirectory(Path.of("src/main/resources/results"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            new File("src/main/resources/results").mkdir();
         }
         File file = new File("src/main/resources/results/OptionalTask1.txt");
         Random random = new Random();
