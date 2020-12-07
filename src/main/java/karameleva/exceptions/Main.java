@@ -4,71 +4,121 @@ import karameleva.exceptions.classes.*;
 import karameleva.exceptions.exceptions.*;
 import static karameleva.exceptions.classes.Subject.*;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main( String[] args ) {
         try {
-            Student student01 = new Student("Сидоров Антон", Arrays.asList(new Mark(LOGISTICS, 6),
-                    new Mark(MARKETING, 6), new Mark(SOCIOLOGY, 4), new Mark(STATISTICS, 10),
-                    new Mark(PSYCHOLOGY, 9)));
-            Student student02 = new Student("Иванов Андрей", Arrays.asList(new Mark(LOGISTICS, 10),
-                    new Mark(MARKETING, 4), new Mark(SOCIOLOGY, 6), new Mark(STATISTICS, 5),
-                    new Mark(PSYCHOLOGY, 7), new Mark (PHILOSOPHY, 7)));
-            Student student03 = new Student("Смирнов Леонид", Arrays.asList(new Mark(LOGISTICS, 5),
-                    new Mark(MARKETING, 9), new Mark(STATISTICS, 4), new Mark(PHILOSOPHY, 5),
-                    new Mark(PSYCHOLOGY, 6)));
-            Student student04 = new Student("Кузнецова Алеся", Arrays.asList(new Mark(LOGISTICS, 8),
-                    new Mark(MARKETING, 4), new Mark(SOCIOLOGY, 5), new Mark(STATISTICS, 9),
-                    new Mark(PSYCHOLOGY, 7), new Mark (PHILOSOPHY, 5)));
-            Student student05 = new Student("Михайлов Сергей", Arrays.asList(new Mark(PHILOSOPHY, 6),
-                    new Mark(OS, 4), new Mark(OOP, 8), new Mark(DB, 9), new Mark(SOCIOLOGY, 10),
-                    new Mark(PSYCHOLOGY, 9)));
-            Student student06 = new Student("Новикова Диана", Arrays.asList(new Mark(PHILOSOPHY, 4),
-                    new Mark(OS, 7), new Mark(OOP, 9), new Mark(DB, 7), new Mark(SOCIOLOGY, 4),
-                    new Mark(PSYCHOLOGY, 6)));
-            Student student07 = new Student("Егоров Дмитрий", Arrays.asList(new Mark(PHILOSOPHY, 4),
-                    new Mark(OS, 6), new Mark(OOP, 10),new Mark(DB, 7), new Mark(SOCIOLOGY, 5),
-                    new Mark(PSYCHOLOGY, 8)));
-            Student student08 = new Student("Степанова Нина", Arrays.asList(new Mark(PHILOSOPHY, 5),
-                    new Mark(OS, 6), new Mark(OOP, 4),new Mark(DB, 8), new Mark(SOCIOLOGY, 9),
-                    new Mark(PSYCHOLOGY, 7)));
-            Student student09 = new Student("Морозов Виталий", Arrays.asList(new Mark(MATERIALS_TECHNOLOGY, 4),
-                    new Mark(MATERIALS_SCIENCE, 5), new Mark(CUTTING_THEORY, 5), new Mark(PSYCHOLOGY, 8),
-                    new Mark(PHILOSOPHY, 8), new Mark(SOCIOLOGY, 9)));
-            Student student10 = new Student("Волкова Алина", Arrays.asList(new Mark(MATERIALS_TECHNOLOGY, 5),
-                    new Mark(MATERIALS_SCIENCE, 6), new Mark(CUTTING_THEORY, 4), new Mark(PSYCHOLOGY, 10),
-                    new Mark(PHILOSOPHY, 7), new Mark(SOCIOLOGY, 8)));
-            Student student11 = new Student("Захаров Никита", Arrays.asList(new Mark(MATERIALS_TECHNOLOGY, 5),
-                    new Mark(MATERIALS_SCIENCE, 5), new Mark(CUTTING_THEORY, 6), new Mark(PSYCHOLOGY, 4),
-                    new Mark(PHILOSOPHY, 8), new Mark(SOCIOLOGY, 7)));
-            Student student12 = new Student("Лебедев Михаил", Arrays.asList(new Mark(MATERIALS_TECHNOLOGY, 8),
-                    new Mark(MATERIALS_SCIENCE, 9),new Mark(CUTTING_THEORY, 7), new Mark(PSYCHOLOGY, 6),
-                    new Mark(PHILOSOPHY, 8), new Mark(SOCIOLOGY, 5)));
+            Student studentSidorovAnton = new Student("Сидоров Антон");
 
-            Group mg12 = new Group("MГ-12", Arrays.asList(student01, student02));
-            Group mt12 = new Group("МТ-12", Arrays.asList(student03, student04));
-            Group itp11 = new Group("ИТП-11", Arrays.asList(student05, student06));
-            Group iti11 = new Group("ИТИ-11", Arrays.asList(student07, student08));
-            Group tm11 = new Group("ТМ-11", Arrays.asList(student09, student10));
-            Group ms12 = new Group("МС-12", Arrays.asList(student11, student12));
+            studentSidorovAnton.addMark(new Mark(LOGISTICS, 6));
+            studentSidorovAnton.addMark(new Mark(MARKETING, 6));
+            studentSidorovAnton.addMark(new Mark(SOCIOLOGY, 4));
+            studentSidorovAnton.addMark(new Mark(STATISTICS, 10));
+            studentSidorovAnton.addMark(new Mark(PSYCHOLOGY, 9));
 
-            Faculty gef = new Faculty("Гуманитарно-экономический факультет", Arrays.asList(mg12, mt12));
-            Faculty fais = new Faculty("Факультет автоматизированных и информационных систем", Arrays.asList(itp11, iti11));
-            Faculty msf = new Faculty("Машиностроительный факультет", Arrays.asList(tm11, ms12));
+            Student studentIvanovAndrey = new Student("Иванов Андрей");
 
-            University technicalUniversity = new University(Arrays.asList(gef, fais, msf));
+            studentIvanovAndrey.addMark(new Mark(LOGISTICS, 10));
+            studentIvanovAndrey.addMark(new Mark(MARKETING, 4));
+            studentIvanovAndrey.addMark(new Mark(SOCIOLOGY, 6));
+            studentIvanovAndrey.addMark(new Mark(STATISTICS, 5));
+            studentIvanovAndrey.addMark(new Mark(PSYCHOLOGY, 7));
+            studentIvanovAndrey.addMark(new Mark(PHILOSOPHY, 7));
 
-            System.out.println("Средний балл студента " + student10.getStudentName() + " - "
-                    + String.format("%.2f" , student10.getAverageScoreForStudent()));
-            System.out.println("Средний балл по предмету '" + OS + "' в группе '" + iti11 + "' на факультете '" + fais
-                    + "' - " + String.format("%.2f" , fais.getAverageScoreForSubjectInGroupAtFaculty(OS, iti11)));
-            System.out.println("Средний балл по предмету '" + SOCIOLOGY + "' в университете - "
-                    + String.format("%.2f" ,technicalUniversity.getAverageScoreForSubjectAtUniversity(SOCIOLOGY)));
+            Student studentSmirnovLeonid = new Student("Смирнов Леонид");
 
-        } catch (NoFacultiesInTheUniversityException | NoGroupsAtTheFacultyException | NoStudentsInTheGroupException |
-                NoSubjectsForStudentException | MarkOutOfBoundException | NoGroupAtTheFacultyException e) {
-            System.err.println(e);
+            studentSmirnovLeonid.addMark(new Mark(LOGISTICS, 5));
+            studentSmirnovLeonid.addMark(new Mark(MARKETING, 9));
+            studentSmirnovLeonid.addMark(new Mark(STATISTICS, 4));
+            studentSmirnovLeonid.addMark(new Mark(PHILOSOPHY, 5));
+            studentSmirnovLeonid.addMark(new Mark(PSYCHOLOGY, 6));
+
+            Student studentKuznecovaAlesia = new Student("Кузнецова Алеся");
+
+            studentKuznecovaAlesia.addMark(new Mark(LOGISTICS, 8));
+            studentKuznecovaAlesia.addMark(new Mark(MARKETING, 4));
+            studentKuznecovaAlesia.addMark(new Mark(SOCIOLOGY, 5));
+            studentKuznecovaAlesia.addMark(new Mark(STATISTICS, 9));
+            studentKuznecovaAlesia.addMark(new Mark(PSYCHOLOGY, 7));
+            studentKuznecovaAlesia.addMark(new Mark(PHILOSOPHY, 5));
+
+            Student studentMihaylovSergey = new Student("Михайлов Сергей");
+
+            studentMihaylovSergey.addMark(new Mark(PHILOSOPHY, 6));
+            studentMihaylovSergey.addMark(new Mark(OS, 4));
+            studentMihaylovSergey.addMark(new Mark(OOP, 8));
+            studentMihaylovSergey.addMark(new Mark(DB, 9));
+            studentMihaylovSergey.addMark(new Mark(SOCIOLOGY, 10));
+            studentMihaylovSergey.addMark(new Mark(PSYCHOLOGY, 9));
+
+            Student studentNovikovaDiana = new Student("Новикова Диана");
+
+            studentNovikovaDiana.addMark(new Mark(PHILOSOPHY, 4));
+            studentNovikovaDiana.addMark(new Mark(OS, 7));
+            studentNovikovaDiana.addMark(new Mark(OOP, 9));
+            studentNovikovaDiana.addMark(new Mark(DB, 7));
+            studentNovikovaDiana.addMark(new Mark(SOCIOLOGY, 4));
+            studentNovikovaDiana.addMark(new Mark(PSYCHOLOGY, 6));
+
+            Student studentEgorovDmitriy = new Student("Егоров Дмитрий");
+
+            studentEgorovDmitriy.addMark(new Mark(PHILOSOPHY, 4));
+            studentEgorovDmitriy.addMark(new Mark(OS, 6));
+            studentEgorovDmitriy.addMark(new Mark(OOP, 10));
+            studentEgorovDmitriy.addMark(new Mark(DB, 7));
+            studentEgorovDmitriy.addMark(new Mark(SOCIOLOGY, 5));
+            studentEgorovDmitriy.addMark(new Mark(PSYCHOLOGY, 8));
+
+            Student studentStepanovaNina = new Student("Степанова Нина");
+
+            studentStepanovaNina.addMark(new Mark(PHILOSOPHY, 5));
+            studentStepanovaNina.addMark(new Mark(OS, 6));
+            studentStepanovaNina.addMark(new Mark(OOP, 4));
+            studentStepanovaNina.addMark(new Mark(DB, 8));
+            studentStepanovaNina.addMark(new Mark(SOCIOLOGY, 9));
+            studentStepanovaNina.addMark(new Mark(PSYCHOLOGY, 7));
+
+            Group mg12Group = new Group("MГ-12");
+            mg12Group.addStudent(studentSidorovAnton);
+            mg12Group.addStudent(studentIvanovAndrey);
+
+            Group mt12Group = new Group("МТ-12");
+            mt12Group.addStudent(studentSmirnovLeonid);
+            mt12Group.addStudent(studentKuznecovaAlesia);
+
+            Group itp11Group = new Group("ИТП-11");
+            itp11Group.addStudent(studentMihaylovSergey);
+            itp11Group.addStudent(studentNovikovaDiana);
+
+            Group iti11Group = new Group("ИТИ-11");
+            iti11Group.addStudent(studentEgorovDmitriy);
+            iti11Group.addStudent(studentStepanovaNina);
+
+            Faculty gefFaculty = new Faculty("ГЭФ");
+            gefFaculty.addGroup(mg12Group);
+            gefFaculty.addGroup(mt12Group);
+
+            Faculty faisFaculty = new Faculty("ФАИС");
+            faisFaculty.addGroup(itp11Group);
+            faisFaculty.addGroup(iti11Group);
+
+            University technicalUniversity = new University("Технический университет");
+            technicalUniversity.addFaculty(gefFaculty);
+            technicalUniversity.addFaculty(faisFaculty);
+
+            System.out.println("Средний балл студента Степанова Нина - " + String.format("%.2f",
+                    technicalUniversity.getStudent("СТЕПАНОВА Нина").getAverageScoreForStudent()));
+            System.out.println("Средний балл по философии в группе ИТИ-11 - " + String.format("%.2f",
+                    technicalUniversity.getGroup("ИТИ-11").getAverageScoreForSubjectAtGroup("философия")));
+            System.out.println("Средний балл по статистике на факультете ГЭФ - " + String.format("%.2f",
+                    technicalUniversity.getFaculty("гэф").getAverageScoreForSubjectAtFaculty("статистика")));
+            System.out.println("Средний балл по операционным системам в университете - " + String.format("%.2f",
+                    technicalUniversity.getAverageScoreForSubjectAtUniversity("операционные системы")));
+
+        } catch (NoSubjectsForStudentException | MarkOutOfBoundException | NoStudentAtTheUniversityException |
+                NoStudentsInTheGroupException | NoRequiredSubjectException | NoRequiredFacultyAtTheUniversityException |
+                NoGroupsAtTheFacultyException | NoRequiredGroupException | NoFacultiesInTheUniversityException |
+                RequiredSubjectDoesNotExistException e) {
+            e.printStackTrace();
         }
     }
 }
