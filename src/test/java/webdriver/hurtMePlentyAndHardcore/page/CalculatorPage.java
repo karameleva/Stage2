@@ -3,8 +3,16 @@ package webdriver.hurtMePlentyAndHardcore.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculatorPage  extends Page{
+
+    @FindBy(xpath = "//*[@id='cloud-site']//iframe")
+    private WebElement frameMain;
+
+    @FindBy(xpath = "//iframe[@id='myFrame']")
+    private WebElement frameCalculator;
     
     @FindBy(xpath="//md-tab-item/div[@title='Compute Engine']")
     private WebElement computeEngine;
@@ -72,8 +80,41 @@ public class CalculatorPage  extends Page{
     @FindBy(xpath = "//button[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);']")
     private WebElement addToEstimate;
 
+    @FindBy(xpath = "//*[@id='compute']//div[contains(text(), 'VM class')]")
+    private WebElement resultVMClass;
+
+    @FindBy(xpath = "//*[@id='compute']//div[contains(text(), 'Instance type')]")
+    private WebElement resultInstanceType;
+
+    @FindBy(xpath = "//*[@id='compute']//div[contains(text(), 'Region')]")
+    private WebElement resultRegion;
+
+    @FindBy(xpath = "//*[@id='compute']//div[contains(text(), 'local SSD')]")
+    private WebElement resultLocalSSD;
+
+    @FindBy(xpath = "//*[@id='compute']//div[contains(text(), 'Commitment term')]")
+    private WebElement resultCommitmentTerm;
+
+    @FindBy(xpath="//*[@id='compute']//b[contains(text(), 'Cost')]")
+    private WebElement resultPrice;
+
+    @FindBy(id="email_quote")
+    private WebElement emailEstimate;
+
+    @FindBy(id="input_477")
+    private WebElement email;
+
+    @FindBy(xpath = "//button[@aria-label='Send Email']")
+    private WebElement sendEmail;
+
     public CalculatorPage(WebDriver driver) {
         super(driver);
+    }
+
+    public CalculatorPage goToFrame(){
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameMain));
+        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameCalculator));
+        return this;
     }
 
     public CalculatorPage activateComputeEngineSection(){
@@ -82,7 +123,7 @@ public class CalculatorPage  extends Page{
         return this;
     }
 
-    public CalculatorResultsPage fillInTheForm(){
+    public CalculatorPage fillInTheForm(){
         setNumberOfInstances();
         setOperatingSystem();
         setVMClass();
@@ -92,7 +133,7 @@ public class CalculatorPage  extends Page{
         setDatacenterLocation();
         setCommittedUsage();
         addToEstimate();
-        return new CalculatorResultsPage(driver);
+        return this;
     }
 
     private CalculatorPage setNumberOfInstances(){
@@ -151,4 +192,46 @@ public class CalculatorPage  extends Page{
         waitForPresenceOfElement(addToEstimate).click();
         return this;
     }
+
+    public void sendEmail(String tenMinEmail){
+        enterEmail(tenMinEmail);
+        clickSendEmail();
+    }
+
+    public CalculatorPage enterEmail(String mail){
+        goToFrame();
+        emailEstimate.click();
+        waitForPresenceOfElement(email).sendKeys(mail);
+        return this;
+    }
+
+    public void clickSendEmail(){
+        waitElementToBeClickable(sendEmail);
+        sendEmail.click();
+    }
+
+    public String getVMClass(){
+        return resultVMClass.getText();
+    }
+
+    public String getInstanceType(){
+        return resultInstanceType.getText();
+    }
+
+    public String getRegion(){
+        return resultRegion.getText();
+    }
+
+    public String getLocalSSD(){
+        return resultLocalSSD.getText();
+    }
+
+    public String getCommitmentTerm(){
+        return resultCommitmentTerm.getText();
+    }
+
+    public String getPrice(){
+        return resultPrice.getText();
+    }
+
 }
