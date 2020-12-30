@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPastebinPage extends Page {
+public class MainPastebinPage extends AbstractPage {
     private static final String HOMEPAGE_URL = "https://pastebin.com";
 
     @FindBy(id = "postform-text")
