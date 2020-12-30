@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewPastebinPage extends Page{
+public class NewPastebinPage extends AbstractPage {
      @FindBy(xpath = "//div[@class='notice -success -post-view']")
      private WebElement newPasteIsVisible;
 
