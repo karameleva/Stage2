@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CalculatorPage  extends Page{
+public class CalculatorPage  extends AbstractPage {
 
     @FindBy(xpath = "//*[@id='cloud-site']//iframe")
     private WebElement frameMain;
@@ -233,5 +233,4 @@ public class CalculatorPage  extends Page{
     public String getPrice(){
         return resultPrice.getText();
     }
-
 }

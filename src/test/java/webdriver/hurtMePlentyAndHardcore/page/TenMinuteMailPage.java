@@ -1,11 +1,10 @@
 package webdriver.hurtMePlentyAndHardcore.page;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TenMinuteMailPage extends Page {
+public class TenMinuteMailPage extends AbstractPage {
 
     @FindBy(id="mail_address")
     private WebElement mailAddress;
@@ -21,28 +20,20 @@ public class TenMinuteMailPage extends Page {
     }
 
     public String getTenMinMail(){
-        open10MinMail();
+        driver.get("https://10minutemail.com/");
         waitForPresenceOfElement(mailAddress);
         String newEmail;
         do{
             newEmail = mailAddress.getAttribute("value");
         }
         while (newEmail=="");
-        driver.switchTo().window(getHandles().get(0));
+
         return newEmail;
     }
 
     public String getPrice(){
-        driver.switchTo().window(getHandles().get(1));
         waitElementToBeClickable(openEmail).click();
         String priceInEmail = waitForPresenceOfElement(price).getText();
         return priceInEmail;
-    }
-
-    public TenMinuteMailPage open10MinMail(){
-        ((JavascriptExecutor) driver).executeScript("window.open()");
-        driver.switchTo().window(getHandles().get(1));
-        driver.get("https://10minutemail.com/");
-        return this;
     }
 }
