@@ -25,7 +25,7 @@ public class BringItOnTest {
     }
 
     @Test
-    public void browserPageNameIsEqualTitle(){
+    public void testAreEnteredAndPresentDataEqual(){
         NewPastebinPage newPage = new MainPastebinPage(driver)
                 .openPage()
                 .inputData(codeText, title)
