@@ -2,17 +2,17 @@ package webdriver.iCanWinAndBringItOn.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import webdriver.iCanWinAndBringItOn.page.MainPastebinPage;
 import webdriver.iCanWinAndBringItOn.page.NewPastebinPage;
 
 public class BringItOnTest {
 
     private WebDriver driver;
-    private NewPastebinPage newPage;
+
     private String codeText = "git config --global user.name  \"New Sheriff in Town\"\n" +
             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
             "git push origin master --force";
@@ -21,27 +21,21 @@ public class BringItOnTest {
     @BeforeMethod(alwaysRun = true)
     public void browserSetup(){
         driver = new ChromeDriver();
-        newPage = new NewPastebinPage(driver);
         driver.manage().window().maximize();
-        new MainPastebinPage(driver)
-                .openPage()
-                .inputData(codeText, title)
-                .createNewPaste();
     }
 
     @Test
     public void browserPageNameIsEqualTitle(){
-        Assert.assertEquals(newPage.getPageTitle(), title,  "Name of the page and Paste Name are not equal");
-    }
+        NewPastebinPage newPage = new MainPastebinPage(driver)
+                .openPage()
+                .inputData(codeText, title)
+                .createNewPaste();
 
-    @Test
-    public void codeIsEqualCodeText(){
-        Assert.assertEquals(newPage.getCodeText(), codeText, "Text in new paste and entered text are not equal");
-    }
-
-    @Test
-    public void syntaxHighlightingIsEqualBash(){
-        Assert.assertEquals(newPage.getTypeOfSyntaxHighlighting(), "bash", "Syntax Highlighting is not equal with 'bash'");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(newPage.getPageTitle(), title,  "Name of the page and Paste Name are not equal");
+        softAssert.assertEquals(newPage.getCodeText(), codeText, "Text in new paste and entered text are not equal");
+        softAssert.assertEquals(newPage.getTypeOfSyntaxHighlighting(), "bash", "Syntax Highlighting is not equal with 'bash'");
+        softAssert.assertAll();
     }
 
     @AfterMethod (alwaysRun = true)
